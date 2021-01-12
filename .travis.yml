@@ -4,20 +4,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t mfechner/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t idefix6/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true mfechner/react-test npm test
+  - docker run -e CI=true idefix6/react-test npm test
 
 after_success:
-  - docker build -t mfechner/multi-client ./client
-  - docker build -t mfechner/multi-nginx ./nginx
-  - docker build -t mfechner/multi-server ./server
-  - docker build -t mfechner/multi-worker ./worker
+  - docker build -t idefix6/multi-client ./client
+  - docker build -t idefix6/multi-nginx ./nginx
+  - docker build -t idefix6/multi-server ./server
+  - docker build -t idefix6/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take the images and push them to docker hub
-  - docker push mfechner/multi-client
-  - docker push mfechner/multi-nginx
-  - docker push mfechner/multi-server
-  - docker push mfechner/multi-worker
+  - docker push idefix6/multi-client
+  - docker push idefix6/multi-nginx
+  - docker push idefix6/multi-server
+  - docker push idefix6/multi-worker
